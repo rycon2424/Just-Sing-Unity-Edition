@@ -28,7 +28,7 @@ public class MicrophoneInput : MonoBehaviour
     {
         float[] spectrum = new float[64];
 
-        AudioListener.GetSpectrumData(spectrum, 0, FFTWindow.BlackmanHarris);
+        AudioListener.GetSpectrumData(spectrum, 0, FFTWindow.Rectangular);
 
         for (int i = 1; i < spectrum.Length - 1; i++)
         {
