@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(AudioSource))]
 public class MicrophoneInput : MonoBehaviour
 {
     public List<string> deviceNames = new List<string>();
     private AudioSource audioS;
+    public Text[] debug;
 
     void Start()
     {
@@ -26,12 +28,13 @@ public class MicrophoneInput : MonoBehaviour
     {
         float[] spectrum = new float[64];
 
-        AudioListener.GetSpectrumData(spectrum, 0, FFTWindow.Hanning);
+        AudioListener.GetSpectrumData(spectrum, 0, FFTWindow.BlackmanHarris);
 
         for (int i = 1; i < spectrum.Length - 1; i++)
         {
             Debug.DrawLine(new Vector3(1+i, Mathf.Log(spectrum[i - 1]), 0), new Vector3(1+i, Mathf.Log(spectrum[i]), 3), Color.white);
         }
+
     }
 
 }
